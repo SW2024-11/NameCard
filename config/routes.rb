@@ -4,4 +4,7 @@ Rails.application.routes.draw do
   get 'top/top_page'
   
   root 'top#top_page'
+  
+  resources :users
+  resources :cards
 end
