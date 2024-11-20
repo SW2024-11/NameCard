@@ -1,0 +1,7 @@
+<% @users do |e| %>
+    会社名：<%= User.find(e.user_id).my_company %>
+    名前：<%= User.find(e.user_id).my_name %>
+    パスワード：<%= User.find(e.user_id).pass %>
+<% end %>
+
+<%= link_to "ユーザ一覧にもどる", index_users_path %>
