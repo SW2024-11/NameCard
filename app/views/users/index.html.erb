@@ -1,1 +1,6 @@
-<%= link_to "新規登録", new_user_path %> <%= link_to "新規追加", new_user_path %>
+<% @users.each do |e| %>
+    会社名：<%= User.find(e.user_id).my_company %>
+    名前：<%= User.find(e.user_id).my_name %>
+    <%= link_to "詳細", show_users_path %>
+    <br>
+<% end %>
