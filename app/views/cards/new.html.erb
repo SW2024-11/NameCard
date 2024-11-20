@@ -3,19 +3,15 @@
 <h1>名刺追加</h1>
 
 <%= form_with model: @card do |c| %>
-  <p><%= c.label :company, '会社名' %></p>
-  <p><%= c.label :name, '氏名' %></p>
-  <p><%= c.label :position, '役職(肩書き)：' %></p>
-  <p><%= c.label :license, '資格：' %></p>
-  <p><%= c.label :mail, 'メールアドレス：' %></p>
-  <p><%= c.label :tell, '電話番号：' %></p>
-  <p><%= c.label :company_adress, '会社住所：' %></p>
-  <p><%= c.label :position, '役職(肩書き)：' %></p>
-  <p><%= c.label :position, '役職(肩書き)：' %></p>
-  <%= f.submit '送信' %>
+  <p><%= c.label :company, '会社名' %>：<%= c.text_field :company %></p>
+  <p><%= c.label :name, '氏名' %>：<%= c.text_field :name %></p>
+  <p><%= c.label :position, '役職(肩書き)' %>：<%= c.text_field :position %></p>
+  <p><%= c.label :license, '資格' %>：<%= c.text_field :license %></p>
+  <p><%= c.label :mail, 'メールアドレス' %>：<%= c.text_field :mail %></p>
+  <p><%= c.label :tell, '電話番号' %>：<%= c.text_field :tell %></p>
+  <p><%= c.label :company_adress, '会社住所' %>：<%= c.text_field :company_adress %></p>
+  <p><%= c.label :image, '名刺画像' %>：<%= c.file_field :image %></p>
+  <%= c.submit '送信' %>
 <% end %>
 
-                    company_adress: params[:card][:company_adress],
-                    image: params[:card][:image])
-
-<p><%= link_to "商品一覧に戻る", root_path %></p>
+<p><%= link_to "戻る", root_path %></p>
