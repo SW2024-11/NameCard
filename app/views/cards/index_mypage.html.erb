@@ -1,0 +1,15 @@
+<% if flash[:notice] %>
+    <%= flash[:notice] %>
+<% end %>
+
+<%= link_to 'ログアウト', root_path %>
+
+<h1>名刺情報一覧</h1>
+
+<!-- 検索機能 -->
+
+<% @cards.each do |c| %>
+    <p>・<%= c.company %></p>
+    <p>・<%= c.name %></p>
+    <p><%=link_to '詳細', show_mypage_card_path %></p>
+<% end %>
