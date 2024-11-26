@@ -58,4 +58,9 @@ class CardsController < ApplicationController
       render 'edit'#, status: :unprocessable_entity
     end
   end
+  
+  def get_image
+    image = Card.find(params[:id])
+    send_data image.file, disposition: :inline, type: 'image/png'
+  end
 end

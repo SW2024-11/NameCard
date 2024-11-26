@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   
   resources :users
   resources :cards
+  
+  get 'get_image/:id', to: 'images#get_image'
 end
