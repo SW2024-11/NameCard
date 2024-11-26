@@ -1,6 +1,6 @@
 class CardsController < ApplicationController
   def index
-    @cards = Card.all.order(tdate: :desc)
+    @cards = Card.all
   end
   
   def new
