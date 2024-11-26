@@ -1,5 +1,5 @@
 class TopController < ApplicationController
-    def top_page
+    def main
         if session[:login_uid]
             redirect_to users_path
         end
