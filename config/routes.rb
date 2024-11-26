@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
   
-  get 'top/top_page'
+  get 'top/main'
   
-  root 'top#top_page'
+  root 'top#main'
   
   resources :users
   resources :cards
