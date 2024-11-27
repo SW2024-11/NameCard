@@ -1,6 +1,118 @@
-<%= form_with url: '/top/mian', method: :post, local: true do |f| %>
-    <h1>名刺マネージャー</h1>
-    <%= link_to '新規登録'%>
-    <%= link_to 'ログイン'%>
-    <p>説明</p>
+<%= form_with url: '/top/main', method: :post, local: true do |f| %>
+        <!DOCTYPE html>
+        <html lang="ja">
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>名刺マネージャー</title>
+          <style>
+            body {
+              font-family: Arial, sans-serif;
+              margin: 0;
+              padding: 0;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              height: 100vh;
+              background-color: #f9f9f9;
+            }
+        
+            header {
+              text-align: center;
+              margin-bottom: 30px;
+            }
+        
+            header h1 {
+              font-size: 50px;
+              margin: 0;
+            }
+        
+            .container {
+              width: 90%;
+              max-width: 400px;
+              background: #fff;
+              padding: 20px;
+              justify-content: center;
+              box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+              border-radius: 8px;
+            }
+        
+            .buttons {
+              display: flex;
+              margin-bottom: 20px;
+              justify-content: space-between;
+              align-items: center;
+              margin: auto;
+            }
+        
+            .buttons a {
+              text-decoration: none;
+              background: #007bff;
+              color: white;
+              padding: 10px 20px;
+              border-radius: 5px;
+              text-align: center;
+            }
+        
+            .buttons a:hover {
+              background: #0056b3;
+            }
+        
+            form {
+              display: flex;
+              flex-direction: column;
+            }
+        
+            form label {
+              margin: 10px 0 5px;
+              font-size: 14px;
+            }
+        
+            form input[type="text"], form input[type="password"] {
+              padding: 10px;
+              font-size: 14px;
+              border: 1px solid #ccc;
+              border-radius: 5px;
+            }
+        
+            form input[type="submit"] {
+              margin-top: 15px;
+              padding: 10px;
+              font-size: 16px;
+              color: white;
+              background: #28a745;
+              border: none;
+              border-radius: 5px;
+              cursor: pointer;
+            }
+        
+            form input[type="submit"]:hover {
+              background: #218838;
+            }
+        
+            .about {
+              margin-top: 20px;
+              font-size: 14px;
+              color: #555;
+              text-align: center;
+            }
+          </style>
+        </head>
+        <body>
+          <header>
+            <h1>名刺マネージャー</h1>
+          </header>
+          <div class="container">
+            <div class="buttons">
+              <a href="users/new">新規登録</a>
+              <a href="top/login">ログイン</a>
+            </div>
+          </div>
+          <div class="about">
+            <p>アプリについて</p>
+          </div>
+        </body>
+        </html>
+
 <% end %>
