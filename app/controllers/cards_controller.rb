@@ -1,6 +1,10 @@
 class CardsController < ApplicationController
   def index
-    @cards = Card.all.order(tdate: :desc)
+    if params[:view_type] == 'mypage'
+      @cards = Card.all               #ココ
+      render 'show_mypage'
+    @cards = Card.all                 #ココ
+    end
   end
   
   def new
@@ -30,11 +34,11 @@ class CardsController < ApplicationController
       flash[:notice] = '削除しました。'
       redirect_to root_path
     else
-      render 'index'#, status: :unprocessable_entity
+      render 'index_mypage'#, status: :unprocessable_entity
     end
   end
   
-  def show
+  def show                             #ココ
     @card = Card.find(params[:id])
   end
   
@@ -57,5 +61,10 @@ class CardsController < ApplicationController
     else
       render 'edit'#, status: :unprocessable_entity
     end
+  end
+  
+  def get_image
+    image = Card.find(params[:id])
+    send_data image.file, disposition: :inline, type: 'image/png'
   end
 end

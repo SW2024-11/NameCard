@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   post 'top/login'
   
   root 'top#main'
+  #root 'cards#index'
   
   resources :users
   resources :cards
+  
+  get 'get_image/:id', to: 'images#get_image'
 end
