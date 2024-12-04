@@ -1,0 +1,79 @@
+<%= form_with url: '/top/login', method: :post, local: true do |f| %>
+        <!DOCTYPE html>
+        <html lang="ja">
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>名刺マネージャー</title>
+          <style>
+            body {
+              font-family: Arial, sans-serif;
+              margin: 0;
+              padding: 0;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              height: 100vh;
+              background-color: #f9f9f9;
+            }
+        
+            header {
+              text-align: center;
+              margin-bottom: 30px;
+            }
+        
+            header h1 {
+              font-size: 50px;
+              margin: 0;
+            }
+            
+            .a {
+              font-size: 20px;
+              text-align: right;
+            }
+            
+            .buttons {
+              display: flex;
+              margin-bottom: 10px;
+              justify-content: center;
+              align-items: center;
+              margin: auto;
+            }
+            
+            .buttons a {
+              text-decoration: none;
+              background: #007bff;
+              color: white;
+              padding: 8px 20px;
+              border-radius: 5px;
+              text-align: center;
+            }
+        
+            .buttons a:hover {
+              background: #0056b3;
+            }
+            
+            
+          </style>
+         
+         
+        <body>
+          <header>
+            <h1>ログイン</h1>
+          </header>
+          <div class="a">
+          <form action="/submit" method="post">
+            <label for="my_name">名前:</label>
+            <input type="text", id="my_name", placeholder="名前を入力">
+            <br>
+            <label for="pass">パスワード:</label>
+            <input type="text", id="pass", placeholder="パスワード">
+          </div>
+          <br>
+            <div class="buttons">
+              <a href="cards/index">ログイン</a>
+            </div>
+          </form>
+        </body>
+<% end %>

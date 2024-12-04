@@ -5,6 +5,10 @@ class TopController < ApplicationController
         end
     end
     
+    def login_form
+        #ログイン画面の表示
+    end
+    
     def login
         user = User.find_by(uid: params[:uid])
         if  user and BCrypt::Password.new(user.pass) == params[:pass]
@@ -14,9 +18,11 @@ class TopController < ApplicationController
             render "error",status:422 
         end
     end
+
     
     def logout
         session.delete(:login_uid)
         redirect_to root_path
     end
+
 end
