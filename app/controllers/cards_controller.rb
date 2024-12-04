@@ -1,10 +1,12 @@
 class CardsController < ApplicationController
   def index
     if params[:view_type] == 'mypage'
-      @cards = Card.all               #ココ
+      @view_type = params[:view_type]
+      card_ids = params[:card_ids].split(',')
+      @cards = Card.where(id: card_ids) 
       render 'index_mypage'
     else
-      @cards = Card.all               #ココ
+      @cards = Card.all
       render 'index'
     end
   end
@@ -23,9 +25,9 @@ class CardsController < ApplicationController
                     company_adress: params[:card][:company_adress],
                     image: params[:card][:image])
     if @card.save
-      redirect_to card_with_view_type_path(@card.id, 'mypage')
+      redirect_to root_path
     else
-      render 'new'#, status: :unprocessable_entity
+      render 'new'
     end
   end
   
@@ -61,9 +63,9 @@ class CardsController < ApplicationController
                     tell: params[:card][:tell],
                     company_adress: params[:card][:company_adress],
                     image: params[:card][:image])
-      redirect_to root_path
+      redirect_to card_index_mypage_path
     else
-      render 'edit'#, status: :unprocessable_entity
+      render 'edit'
     end
   end
   
