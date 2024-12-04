@@ -2,9 +2,11 @@ class CardsController < ApplicationController
   def index
     if params[:view_type] == 'mypage'
       @cards = Card.all               #ココ
-      render 'show_mypage'
+      render 'index_mypage'
+    else
+      @cards = Card.all               #ココ
+      render 'index'
     end
-    @cards = Card.all                 #ココ
   end
   
   def new
@@ -21,8 +23,7 @@ class CardsController < ApplicationController
                     company_adress: params[:card][:company_adress],
                     image: params[:card][:image])
     if @card.save
-      flash[:notice] = '追加しました。'
-      redirect_to root_path
+      redirect_to card_with_view_type_path(@card.id, 'mypage')
     else
       render 'new'#, status: :unprocessable_entity
     end
@@ -31,15 +32,19 @@ class CardsController < ApplicationController
   def destroy
     @card = Card.find(params[:id])
     if @card.destroy
-      flash[:notice] = '削除しました。'
-      redirect_to root_path
+      redirect_to card_with_view_type_path(@card.id, 'mypage')
     else
-      render 'index_mypage'#, status: :unprocessable_entity
+      render card_with_view_type_path(@card.id, 'mypage')
     end
   end
   
-  def show                             #ココ
+  def show                                 #ココ
     @card = Card.find(params[:id])
+    if params[:view_type] == 'myshow'
+      render 'show_mypage'
+    else
+      render 'show'
+    end
   end
   
   def edit
@@ -56,7 +61,6 @@ class CardsController < ApplicationController
                     tell: params[:card][:tell],
                     company_adress: params[:card][:company_adress],
                     image: params[:card][:image])
-      flash[:notice] = '更新しました。'
       redirect_to root_path
     else
       render 'edit'#, status: :unprocessable_entity
