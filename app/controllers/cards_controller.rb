@@ -34,13 +34,13 @@ class CardsController < ApplicationController
   def destroy
     @card = Card.find(params[:id])
     if @card.destroy
-      redirect_to card_with_view_type_path(@card.id, 'mypage')
+      redirect_to card_with_view_type_path(params[:id], 'mypage')
     else
-      render card_with_view_type_path(@card.id, 'mypage')
+      redirect_to card_with_view_type_path(params[:id], 'mypage')
     end
   end
   
-  def show                                 #ココ
+  def show
     @card = Card.find(params[:id])
     if params[:view_type] == 'myshow'
       render 'show_mypage'
@@ -63,7 +63,7 @@ class CardsController < ApplicationController
                     tell: params[:card][:tell],
                     company_adress: params[:card][:company_adress],
                     image: params[:card][:image])
-      redirect_to card_index_mypage_path
+      redirect_to card_with_view_type_path(@card.id, 'mypage')
     else
       render 'edit'
     end

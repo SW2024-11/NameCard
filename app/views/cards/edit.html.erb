@@ -1,4 +1,4 @@
-<%= form_with model: @card do |c| %>
+<%= form_with model: @card, local: true do |c| %>
   <p><%= c.label :company, '会社名' %>：<%= c.text_field :company %></p>
   <p><%= c.label :name, '氏名' %>：<%= c.text_field :name %></p>
   <p><%= c.label :position, '役職(肩書き)' %>：<%= c.text_field :position %></p>
@@ -10,4 +10,4 @@
   <%= c.submit '更新' %>
 <% end %>
 
-<p><%= link_to "戻る", card_index_mypage_path %></p>
+<p><%= link_to "戻る", card_with_view_type_path(@card.id, 'mypage') %></p>

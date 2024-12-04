@@ -5,6 +5,11 @@
 <p>メールアドレス：<%= @card.company %></p>
 <p>電話番号：<%= @card.company %></p>
 <p>会社住所：<%= @card.company %></p>
-<p>名刺画像：<%= get_image_path(@card.id) %></p>
+
+<% if @card.image.attached? %>
+  <p>名刺画像：<%= image_tag url_for(@card.image), alt: "名刺画像", width: 200 %></p>
+<% else %>
+  <p>画像がありません。</p>
+<% end %>
 
 <p><%= link_to '戻る', card_index_path %></p>
