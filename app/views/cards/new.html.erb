@@ -1,4 +1,4 @@
-<%= link_to 'マイページ', card_with_view_type_path(@card.id, 'mypage') %><%= link_to 'ログアウト', root_path %>
+<%= link_to 'ログアウト', root_path %>
 
 <h1>名刺追加</h1>
 
@@ -14,4 +14,4 @@
   <%= c.submit '送信' %>
 <% end %>
 
-<p><%= link_to "戻る", card_with_view_type_path(@card.id) %></p>
+<p><%= link_to "戻る", request.referer %></p>

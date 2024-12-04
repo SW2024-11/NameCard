@@ -7,6 +7,6 @@
 <p>会社住所：<%= @card.company %></p>
 <p>名刺画像：<%= get_image_path(@card.id) %></p>
 
-<p><%= link_to '戻る', card_with_view_type_path(@card.id, 'mypage') %></p>
+<p><%= link_to '戻る', card_index_mypage_path %></p>
 
-<p><%= link_to '編集', edit_path %>　<%= link_to '削除', card_path(@card.id), data: {turbo_method: :delete} %></p>
+<p><%= link_to '編集', edit_card_path %>　<%= link_to '削除', card_path(@card.id), data: {turbo_method: :delete} %></p>

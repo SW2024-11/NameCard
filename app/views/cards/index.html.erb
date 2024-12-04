@@ -1,4 +1,5 @@
-<%= link_to 'マイページ', card_with_view_type_path(@card.id, 'mypage') %>　<%= link_to 'ログアウト', root_path %>
+<%= link_to 'マイページ', card_with_view_type_path(view_type: 'mypage', card_ids: @cards.pluck(:id).join(',')) %>
+　<%= link_to 'ログアウト', root_path %>
 
 <h1>名刺情報一覧</h1>
 

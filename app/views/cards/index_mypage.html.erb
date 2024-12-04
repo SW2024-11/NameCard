@@ -1,4 +1,4 @@
-<%= link_to 'ログアウト', root_path %>
+<%= link_to 'ログアウト', root_path %>　<%= link_to '新規追加', new_card_path %>
 
 <h1>名刺情報一覧</h1>
 
@@ -7,5 +7,5 @@
 <% @cards.each do |c| %>
     <p>・<%= c.company %></p>
     <p>・<%= c.name %></p>
-    <p><%=link_to '詳細', show_mypage_card_path %></p>
+    <p><%=link_to '詳細', card_with_view_type_path(@card.id, 'myshow') %></p>
 <% end %>
