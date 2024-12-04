@@ -5,8 +5,13 @@
 <p>メールアドレス：<%= @card.company %></p>
 <p>電話番号：<%= @card.company %></p>
 <p>会社住所：<%= @card.company %></p>
-<p>名刺画像：<%= get_image_path(@card.id) %></p>
+
+<% if @card.image.attached? %>
+  <p>名刺画像：<%= image_tag url_for(@card.image), alt: "名刺画像", width: 200 %></p>
+<% else %>
+  <p>画像がありません。</p>
+<% end %>
 
 <p><%= link_to '戻る', card_index_mypage_path %></p>
 
-<p><%= link_to '編集', edit_card_path %>　<%= link_to '削除', card_path(@card.id), data: {turbo_method: :delete} %></p>
+<p><%= link_to '編集', edit_card_path(@card) %>　<%= link_to '削除', card_path(@card), data: {turbo_method: :delete} %></p>
