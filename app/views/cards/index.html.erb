@@ -11,5 +11,5 @@
 <% @cards.each do |c| %>
     <p>・<%= c.company %></p>
     <p>・<%= c.name %></p>
-    <p><%=link_to '詳細', show_card_path %></p>
+    <p><%=link_to '詳細', show_card_path(c) %></p>
 <% end %>

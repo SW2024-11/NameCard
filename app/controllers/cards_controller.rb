@@ -3,8 +3,8 @@ class CardsController < ApplicationController
     if params[:view_type] == 'mypage'
       @cards = Card.all               #ココ
       render 'show_mypage'
-    @cards = Card.all                 #ココ
     end
+    @cards = Card.all                 #ココ
   end
   
   def new
