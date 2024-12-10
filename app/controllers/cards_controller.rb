@@ -16,14 +16,7 @@ class CardsController < ApplicationController
   end
   
   def create
-    @card = Card.new(company: params[:card][:company], 
-                    name: params[:card][:name], 
-                    position: params[:card][:position],
-                    license: params[:card][:license],
-                    mail: params[:card][:mail],
-                    tell: params[:card][:tell],
-                    company_adress: params[:card][:company_adress],
-                    image: params[:card][:image])
+    @card = current_user.cards.build(card_params)
     if @card.save
       redirect_to root_path
     else
@@ -73,4 +66,10 @@ class CardsController < ApplicationController
     image = Card.find(params[:id])
     send_data image.file, disposition: :inline, type: 'image/png'
   end
+end
+
+private
+
+def card_params
+  params.require(:card).permit(:company, :name, :position, :license, :mail, :tell, :company_adress, :image)
 end
