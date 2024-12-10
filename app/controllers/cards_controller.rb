@@ -6,7 +6,7 @@ class CardsController < ApplicationController
       @cards = Card.where(id: card_ids) 
       render 'index_mypage'
     else
-      @cards = Card.all
+      @cards = Card.search(params[:query]).order(:created_at)
       render 'index'
     end
   end

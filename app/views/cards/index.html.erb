@@ -3,10 +3,23 @@
 
 <h1>名刺情報一覧</h1>
 
-<!-- 検索機能 -->
+<%= form_with(url: cards_path, method: :get, local: true) do |f| %>
+  <%= f.label :query, "検索ワード" %>
+  <%= f.text_field :query, value: params[:query], placeholder: "検索ワード入力" %>
+  <%= f.submit "検索" %>
+<% end %>
 
-<% @cards.each do |c| %>
-    <p>・<%= c.company %></p>
-    <p>・<%= c.name %></p>
-    <p><%=link_to '詳細', show_card_path(c) %></p>
+<% if @cards.any? %>
+  <h2>検索結果</h2>
+  <ul>
+    <% @cards.each do |c| %>
+      <li>
+        <strong><%= c.company %></strong><br>
+        名前: <%= card.name %><br>
+        <%=link_to '詳細', show_card_path(c) %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>該当する結果が見つかりませんでした。</p>
 <% end %>
