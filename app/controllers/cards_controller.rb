@@ -3,7 +3,8 @@ class CardsController < ApplicationController
     if params[:view_type] == 'mypage'
       @view_type = params[:view_type]
       card_ids = params[:card_ids].split(',')
-      @cards = Card.where(id: card_ids) 
+      #@cards = Card.where(id: card_ids)
+      @cards = Card.search(params[:query]).where(id: card_ids).order(:created_at)
       render 'index_mypage'
     else
       @cards = Card.search(params[:query]).order(:created_at)
@@ -18,7 +19,7 @@ class CardsController < ApplicationController
   def create
     @card = current_user.cards.build(card_params)
     if @card.save
-      redirect_to root_path
+      redirect_to card_with_view_type_path(params[:id], 'mypage')
     else
       render 'new'
     end

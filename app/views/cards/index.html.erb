@@ -1,11 +1,11 @@
 <%= link_to 'マイページ', card_with_view_type_path(view_type: 'mypage', card_ids: @cards.pluck(:id).join(',')) %>
-　<%= link_to 'ログアウト', root_path %>
+　<%= link_to 'ログアウト', cards_path %>
 
-<h1>名刺情報一覧</h1>
+<h1>名刺</h1>
 
 <%= form_with(url: cards_path, method: :get, local: true) do |f| %>
-  <%= f.label :query, "検索ワード" %>
-  <%= f.text_field :query, value: params[:query], placeholder: "検索ワード入力" %>
+  <%= f.label :query, "検索" %>
+  <%= f.text_field :query, value: params[:query], placeholder: "キーワード入力" %>
   <%= f.submit "検索" %>
 <% end %>
 
@@ -15,7 +15,7 @@
     <% @cards.each do |c| %>
       <li>
         <strong><%= c.company %></strong><br>
-        名前: <%= card.name %><br>
+        名前: <%= c.name %><br>
         <%=link_to '詳細', show_card_path(c) %>
       </li>
     <% end %>
