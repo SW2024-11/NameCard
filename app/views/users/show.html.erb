@@ -1,7 +1,10 @@
-<% @users do |e| %>
-    会社名：<%= User.find(e.user_id).my_company %>
-    名前：<%= User.find(e.user_id).my_name %>
-    パスワード：<%= User.find(e.user_id).pass %>
-<% end %>
 
-<%= link_to "ユーザ一覧にもどる", index_users_path %>
+    <p>会社名：<%= @user.my_company %></p>
+    <p>名前：<%= @user.my_name %></p>
+    <p>パスワード：<%= @user.pass %></p>
+
+<%= link_to "編集", edit_user_path %>
+
+<%= link_to "ユーザ一覧にもどる", users_path %>
+
+<%= link_to "削除", user_path(@user), data: {turbo_method: :delete} %>

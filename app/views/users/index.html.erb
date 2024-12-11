@@ -1,6 +1,6 @@
 <% @users.each do |e| %>
-    会社名：<%= User.find(e.user_id).my_company %>
-    名前：<%= User.find(e.user_id).my_name %>
-    <%= link_to "詳細", show_users_path %>
+    会社名：<%= e.my_company %>
+    名前：<%= e.my_name %>
+    <%= link_to "詳細", user_path(e) %>
     <br>
 <% end %>
