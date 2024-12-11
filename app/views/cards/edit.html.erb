@@ -10,4 +10,4 @@
   <%= c.submit '更新' %>
 <% end %>
 
-<p><%= link_to "戻る", card_with_view_type_path(@card.id, 'mypage') %></p>
+<p><%= link_to "戻る", request.referer %></p>

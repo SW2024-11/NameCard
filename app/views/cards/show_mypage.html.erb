@@ -12,6 +12,6 @@
   <p>画像がありません。</p>
 <% end %>
 
-<p><%= link_to '戻る', card_index_mypage_path %></p>
+<p><%= link_to '戻る', request.referer %></p>
 
 <p><%= link_to '編集', edit_card_path(@card) %>　<%= link_to '削除', card_path(@card), data: {turbo_method: :delete} %></p>
