@@ -2,9 +2,9 @@ class CardsController < ApplicationController
   def index
     if params[:view_type] == 'mypage'
       @view_type = params[:view_type]
-      card_ids = params[:card_ids].split(',')
+      @card_ids = params[:card_ids].split(',')
       #@cards = Card.where(id: card_ids)
-      @cards = Card.search(params[:query]).where(id: card_ids).order(:created_at)
+      @cards = Card.search(params[:query]).where(id: @card_ids).order(:created_at)
       render 'index_mypage'
     else
       @cards = Card.search(params[:query]).order(:created_at)

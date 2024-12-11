@@ -1,6 +1,8 @@
 <%= link_to 'マイページ', card_with_view_type_path(view_type: 'mypage', card_ids: @cards.pluck(:id).join(',')) %>
 　<%= link_to 'ログアウト', cards_path %>
 
+<h3>会社ページ</h3>
+
 <h1>名刺</h1>
 
 <%= form_with(url: cards_path, method: :get, local: true) do |f| %>

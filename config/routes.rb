@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   resources :cards
   
   get 'get_image/:id', to: 'images#get_image'
-  get 'cards', to: 'cards#index', as: 'card_with_view_type'
+  #get 'cards', to: 'cards#index', as: 'card_with_view_type'
+  get 'cards_with_view_type', to: 'cards#index', as: 'card_with_view_type'  # card_with_view_type_path
 end

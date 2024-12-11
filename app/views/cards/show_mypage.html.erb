@@ -12,6 +12,6 @@
   <p>画像がありません。</p>
 <% end %>
 
-<p><%= link_to '戻る', card_with_view_type_path(view_type: 'mypage', card_ids: @cards.pluck(:id).join(',')) %></p>
+<p><%= link_to '戻る', request.referer %></p>
 
 <p><%= link_to '編集', edit_card_path(@card) %>　<%= link_to '削除', card_path(@card), data: {turbo_method: :delete} %></p>
