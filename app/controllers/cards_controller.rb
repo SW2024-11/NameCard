@@ -18,7 +18,7 @@ class CardsController < ApplicationController
   def create
     c = Card.new(card_params)
     c.user = User.find_by(my_name: session[:login_uid])
-    if card.save
+    if c.save
       redirect_to card_with_view_type_path(params[:id], 'mypage')
     else
       render 'new'
