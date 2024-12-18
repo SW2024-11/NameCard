@@ -1,7 +1,7 @@
 class TopController < ApplicationController
     def main
         if session[:login_uid]
-            redirect_to users_path
+            redirect_to cards_path
         end
     end
     
@@ -10,9 +10,9 @@ class TopController < ApplicationController
     end
     
     def login
-        user = User.find_by(uid: params[:uid])
-        if  user and BCrypt::Password.new(user.pass) == params[:pass]
-            session[:login_uid] = params[:uid]
+        user = User.find_by(my_name: params[:my_name])
+        if  user.pass == params[:pass]
+            session[:login_uid] = params[:my_name]
             redirect_to top_main_path
         else
             render "error",status:422 
