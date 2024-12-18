@@ -17,7 +17,7 @@
       <li>
         <strong><%= c.company %></strong><br>
         名前: <%= c.name %><br>
-        <%=link_to '詳細', card_with_view_type_path(c.id, 'myshow') %>
+        <%=link_to '詳細', card_path(c.id, 'myshow') %>
       </li>
     <% end %>
   </ul>
