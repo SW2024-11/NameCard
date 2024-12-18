@@ -6,11 +6,12 @@ Rails.application.routes.draw do
   post 'top/login'
   get 'top/logout'
   root 'top#main'
+  #root 'cards#index'  
   
   resources :users
   resources :cards
   
   get 'get_image/:id', to: 'images#get_image'
-  #get 'cards', to: 'cards#index', as: 'card_with_view_type'
-  get 'cards_with_view_type', to: 'cards#index', as: 'card_with_view_type'  # card_with_view_type_path
+  get 'cards', to: 'cards#index', as: 'card_with_view_type'
+  #get 'cards_with_view_type', to: 'cards#index', as: 'card_with_view_type'  # card_with_view_type_path
 end
