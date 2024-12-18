@@ -15,7 +15,7 @@ class TopController < ApplicationController
             session[:login_uid] = params[:my_name]
             redirect_to top_main_path
         else
-            render "error",status:422 
+            redirect_to top_login_path
         end
     end
 
