@@ -1,9 +1,18 @@
 <%= form_with url: '/top/main', method: :post, local: true do |f| %>
-    <h1>名詞マネージャー</h1>
+  <body>
+    <h1>名刺マネージャー</h1>
     <br>
-    <%= link_to "新規登録" ,new_user_path %>
-    <%= link_to "ログイン" ,top_login_path %>
+    <div class="buttons">
+    <%= link_to "新規登録" ,new_user_path, class: "button" %>
+    <%= link_to "ログイン" ,top_login_path, class: "button" %>
+    </div>
     <br>
-    <p>アプリについての説明</p>
+    <div class="main">
+    <h2>営業マンや新入社員の方々におすすめ</h2>
+    <p>必要事項を入力するだけで持っている名刺情報を安全に一括管理</p>
+    <p>詳細には名刺の基本情報や自分だけが分かる特徴をメモ！</p>
+    <p>検索機能で必要な名刺情報をすぐに確認できます</p>
+    </div>
+  </body>
 <% end %>
 
