@@ -1,19 +1,11 @@
 <%= form_with url: '/top/login', method: :post, local: true do |f| %>
-  <body>
-    <div class="top">
     <h1>ログイン</h1>
-    </div>
     <br>
-    <div class="input">
     <%= f.label :my_name, '名前' %>
-    <%= f.text_field :my_name, class: "field"%>
+    <%= f.text_field :my_name %>
     <br>
     <%= f.label :pass, 'パスワード' %>
-    <%= f.text_field :pass, class: "field" %>
-    </div>
+    <%= f.text_field :pass %>
     <br>
-    <div class="buttons">
-    <%= f.submit 'ログイン' ,class: "registration-button" %>
-    </div>
-  </body>
+    <%= f.submit 'ログイン' %>
 <% end %>
