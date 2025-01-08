@@ -1,13 +1,21 @@
+<div class = "header">
+  <div class="title">
+    <h3>編集</h3>
+  </div>
+</div>
+
 <%= form_with model: @card, local: true do |c| %>
-  <p><%= c.label :company, '会社名' %>：<%= c.text_field :company %></p>
-  <p><%= c.label :name, '氏名' %>：<%= c.text_field :name %></p>
-  <p><%= c.label :position, '役職(肩書き)' %>：<%= c.text_field :position %></p>
-  <p><%= c.label :license, '資格' %>：<%= c.text_field :license %></p>
-  <p><%= c.label :mail, 'メールアドレス' %>：<%= c.text_field :mail %></p>
-  <p><%= c.label :tell, '電話番号' %>：<%= c.text_field :tell %></p>
-  <p><%= c.label :company_adress, '会社住所' %>：<%= c.text_field :company_adress %></p>
-  <p><%= c.label :image, '名刺画像' %>：<%= c.file_field :image %></p>
+<body>
+  <p><%= c.label :company, '会社名' %>：<%= c.text_field :company , class: "field"%></p>
+  <p><%= c.label :name, '氏名' %>：<%= c.text_field :name , class: "field"%></p>
+  <p><%= c.label :position, '役職(肩書き)' %>：<%= c.text_field :position , class: "field"%></p>
+  <p><%= c.label :license, '資格' %>：<%= c.text_field :license , class: "field"%></p>
+  <p><%= c.label :mail, 'メールアドレス' %>：<%= c.text_field :mail , class: "field"%></p>
+  <p><%= c.label :tell, '電話番号' %>：<%= c.text_field :tell , class: "field"%></p>
+  <p><%= c.label :company_adress, '会社住所' %>：<%= c.text_field :company_adress , class: "field"%></p>
+  <p><%= c.label :image, '名刺画像' %>：<%= c.file_field :image%></p>
   <%= c.submit '更新' %>
+</body>
 <% end %>
 
-<p><%= link_to "戻る", request.referer %></p>
+<p><%= link_to "戻る", request.referer ,class: "button"%></p>

@@ -1,3 +1,12 @@
+<div class = "header">
+  <div class="title">
+    <h3>名刺詳細</h3>
+  </div>
+  <div class ="nav">
+    <%= link_to 'ログアウト', top_logout_path ,class: "button"%>
+  </div>
+</div>
+
 <p>会社名：<%= @card.company %></p>
 <p>氏名：<%= @card.name %></p>
 <p>役職(肩書き)：<%= @card.position %></p>
@@ -12,8 +21,8 @@
   <p>画像がありません。</p>
 <% end %>
 
-<p><%= link_to '戻る', request.referer %></p>
+<p><%= link_to '戻る', request.referer ,class: "button"%></p>
 
 <% if @mypage %>
-  <p><%= link_to '編集', edit_card_path(@card) %>　<%= link_to '削除', card_path(@card), data: { turbo_method: :delete } %></p>
+  <p><%= link_to '編集', edit_card_path(@card),class: "button" %>　<%= link_to '削除', card_path(@card), data: { turbo_method: :delete } ,class: "button"%></p>
 <% end %>
