@@ -1,26 +1,39 @@
-<%= link_to 'ログアウト', top_logout_path %>　<%= link_to '新規追加', new_card_path %>
+<div class = "header">
+  <div class="title">
+    <h3>マイページ</h3>
+  </div>
+  <div class ="nav">
+    <%= link_to 'ログアウト', top_logout_path ,class: "button"%>　<%= link_to '新規追加', new_card_path ,class: "button"%>
+  </div>
+</div>
 
-<h3>マイページ</h3>
 
-<h1>登録名刺</h1>
+<body>
+  <div class = "cardmain">
+    <h1>登録名刺</h1>
+  <br>
+  <%= form_with(url: card_with_view_type_path(view_type: 'mypage', card_ids: @cards.pluck(:id).join(',')), method: :get, local: true) do |f| %>
+    <%= f.label :query, "検索" %>
+    <div class = "serchbox">
+      <%= f.text_field :query, value: params[:query], placeholder: "キーワード入力" %>
+      <%= f.submit "検索" %>
+    </div>
+  <% end %>
+  <br>
+  <% if @cards.any? %>
+    <h2>検索結果</h2>
+    <ul>
+      <% @cards.each do |c| %>
+        <li>
+          <strong><%= c.company %></strong><br>
+          名前: <%= c.name %><br>
+          <%=link_to '詳細', card_path(c.id, 'myshow') %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>該当する結果が見つかりませんでした。</p>
+  <% end %>
+  </div>
 
-<%= form_with(url: card_with_view_type_path(view_type: 'mypage', card_ids: @cards.pluck(:id).join(',')), method: :get, local: true) do |f| %>
-  <%= f.label :query, "検索" %>
-  <%= f.text_field :query, value: params[:query], placeholder: "キーワード入力" %>
-  <%= f.submit "検索" %>
-<% end %>
-
-<% if @cards.any? %>
-  <h2>検索結果</h2>
-  <ul>
-    <% @cards.each do |c| %>
-      <li>
-        <strong><%= c.company %></strong><br>
-        名前: <%= c.name %><br>
-        <%=link_to '詳細', card_path(c.id, 'myshow') %>
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>該当する結果が見つかりませんでした。</p>
-<% end %>
+</body>

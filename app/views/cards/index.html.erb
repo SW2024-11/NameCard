@@ -1,27 +1,42 @@
-<%= link_to 'マイページ', card_with_view_type_path(view_type: 'mypage', card_ids: @cards.pluck(:id).join(',')) %>
-　<%= link_to 'ログアウト', top_logout_path %>
+<div class = "header">
+  <div class = "title">
+    <h3>会社ページ</h3>
+  </div>
+  <div class ="nav">
+    <%= link_to 'マイページ', card_with_view_type_path(view_type: 'mypage', card_ids: @cards.pluck(:id).join(',')) ,class: "button"%>
+    <%= link_to 'ログアウト', top_logout_path , class: "button"%>
+  </div>
+</div>
 
-<h3>会社ページ</h3>
 
-<h1>名刺</h1>
+<body>
+　<div class = "cardmain">
+    <h1>名刺情報一覧</h1>
+  <br>
+  <%= form_with(url: cards_path, method: :get, local: true) do |f| %>
+    <%= f.label :query, "検索" %>
+    <div class = "serchbox">
+      <%= f.text_field :query, value: params[:query], placeholder: "キーワード入力" %>
+      <%= f.submit "検索" %>
+    </div>
+  <% end %>
+  <br>
+  <% if @cards.any? %>
+    <h2>検索結果</h2>
+    <ul>
+      <% @cards.each do |c| %>
+        <li>
+          <strong><%= c.company %></strong><br>
+          名前: <%= c.name %><br>
+          <%=link_to '詳細', card_path(c) %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>該当する結果が見つかりませんでした。</p>
+  <% end %>
+  </div>
+  
+  
+</body>
 
-<%= form_with(url: cards_path, method: :get, local: true) do |f| %>
-  <%= f.label :query, "検索" %>
-  <%= f.text_field :query, value: params[:query], placeholder: "キーワード入力" %>
-  <%= f.submit "検索" %>
-<% end %>
-
-<% if @cards.any? %>
-  <h2>検索結果</h2>
-  <ul>
-    <% @cards.each do |c| %>
-      <li>
-        <strong><%= c.company %></strong><br>
-        名前: <%= c.name %><br>
-        <%=link_to '詳細', card_path(c) %>
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>該当する結果が見つかりませんでした。</p>
-<% end %>
