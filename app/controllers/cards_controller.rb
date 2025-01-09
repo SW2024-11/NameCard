@@ -13,16 +13,27 @@ class CardsController < ApplicationController
   
   def index
     @mypage = params[:mypage] == 'true'
-    @cards = if @mypage
-               Card.search(params[:query])
-                   .where(company: current_user.company)
-                   .order(:created_at)
-             else
-               Card.search(params[:query])
-                   .order(:created_at)
-             end
+  
+    if current_user
+      if @mypage
+        # ログインしているユーザーが作成したカードのみを表示
+        @cards = Card.search(params[:query])
+                     .where(user: current_user)
+                     .order(:created_at)
+      else
+        # 同じ会社の人が作成したカードをすべて表示
+        @cards = Card.search(params[:query])
+                     .where(company: current_user.my_company)
+                     .order(:created_at)
+      end
+    else
+      # ログインしていない場合は空の結果を返す
+      @cards = Card.none
+    end
+  
     render 'index'
   end
+
   
   def new
     @card = Card.new
@@ -68,19 +79,13 @@ class CardsController < ApplicationController
   
   def update
     @card = Card.find(params[:id])
-    if @card.update(company: params[:card][:company], 
-                    name: params[:card][:name], 
-                    position: params[:card][:position],
-                    license: params[:card][:license],
-                    mail: params[:card][:mail],
-                    tell: params[:card][:tell],
-                    company_adress: params[:card][:company_adress],
-                    image: params[:card][:image])
+    if @card.update(card_params)
       redirect_to cards_path
     else
       render 'edit'
     end
   end
+
   
   def get_image
     image = Card.find(params[:id])
