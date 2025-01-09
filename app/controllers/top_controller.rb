@@ -12,7 +12,7 @@ class TopController < ApplicationController
     def login
         user = User.find_by(my_name: params[:my_name])
         if  user && user.pass == params[:pass]
-            session[:login_uid] = params[:my_name]
+            session[:login_uid] = user.id  #params[:my_name]
             redirect_to top_main_path
         else
             redirect_to top_login_path
