@@ -50,7 +50,16 @@ class CardsController < ApplicationController
   #end
   
   def create
-    c = Card.new(card_params)
+    c = Card.new(
+      company: params[:company],
+      name: params[:name],
+      position: params[:position],
+      license: params[:license],
+      mail: params[:mail],
+      tell: params[:tell],
+      company_adress: params[:company_adress],
+      image: params[:image]
+    )
     c.user = User.find_by(my_name: session[:login_uid])
     if c.save
       redirect_to cards_path

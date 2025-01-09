@@ -1,6 +1,6 @@
 <%= link_to @mypage ? '会社ページ' : 'マイページ', cards_path(mypage: !@mypage) %>
-<%= link_to 'ログアウト', top_logout_path ,class: "button"%>　
-<%= link_to '新規追加', new_card_path if @mypage ,class: "button"%>
+<%= link_to 'ログアウト', top_logout_path, class: "button" %>　
+<%= link_to '新規追加', new_card_path, class: "button" if @mypage %>
 
 
 <body>
