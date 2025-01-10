@@ -12,7 +12,7 @@ class UsersController < ApplicationController
                  my_name: params[:user][:my_name], 
                  pass: params[:user][:pass])
     c.save
-    redirect_to users_path
+    redirect_to cards_path
   end
   
   def destroy
