@@ -50,21 +50,16 @@ class CardsController < ApplicationController
   #end
   
   def create
-    c = Card.new(
-      company: params[:company],
-      name: params[:name],
-      position: params[:position],
-      license: params[:license],
-      mail: params[:mail],
-      tell: params[:tell],
-      company_adress: params[:company_adress],
-      image: params[:image]
-    )
-    c.user = User.find_by(my_name: session[:login_uid])
-    if c.save
+    @card = Card.new(card_params)
+    
+    logger.debug "Session login_uid: #{session[:login_uid]}"
+    
+    @card.user = User.find_by(id: session[:login_uid])
+    
+    if @card.save
       redirect_to cards_path
     else
-      render 'new'
+      render :new, status: :unprocessable_entity
     end
   end
   
