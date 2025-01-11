@@ -27,7 +27,7 @@
           <li>
             <strong><%= c.company %></strong><br>
             名前: <%= c.name %><br>
-            <%= link_to '詳細', card_path(c) %>
+            <%= link_to '詳細', card_path(c, mypage: @mypage) %>
           </li>
         <% end %>
       </ul>

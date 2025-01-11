@@ -63,14 +63,15 @@ class CardsController < ApplicationController
   def destroy
     @card = Card.find(params[:id])
     if @card.destroy
-      redirect_to cards_path
+      redirect_to cards_path(mypage: true)
     else
-      redirect_to cards_path
+      redirect_to cards_path(mypage: true)
     end
   end
   
   def show
     @card = Card.find(params[:id])
+    @mypage = params[:mypage] == 'true'
     render 'show'
   end
   
@@ -81,7 +82,7 @@ class CardsController < ApplicationController
   def update
     @card = Card.find(params[:id])
     if @card.update(card_params)
-      redirect_to cards_path
+      redirect_to cards_path(mypage: true)
     else
       render 'edit'
     end
