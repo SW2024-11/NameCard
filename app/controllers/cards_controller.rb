@@ -51,13 +51,10 @@ class CardsController < ApplicationController
   
   def create
     @card = Card.new(card_params)
-    
-    logger.debug "Session login_uid: #{session[:login_uid]}"
-    
     @card.user = User.find_by(id: session[:login_uid])
     
     if @card.save
-      redirect_to cards_path
+      redirect_to cards_path(mypage: true)
     else
       render :new, status: :unprocessable_entity
     end

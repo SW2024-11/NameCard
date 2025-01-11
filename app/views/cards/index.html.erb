@@ -16,6 +16,7 @@
     <%= form_with(url: cards_path, method: :get, local: true) do |f| %>
       <%= f.label :query, "検索" %>
       <%= f.text_field :query, value: params[:query], placeholder: "キーワード入力" %>
+      <%= hidden_field_tag :mypage, @mypage %>
       <%= f.submit "検索" %>
     <% end %>
 
