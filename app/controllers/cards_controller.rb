@@ -21,9 +21,10 @@ class CardsController < ApplicationController
                      .where(user: current_user)
                      .order(:created_at)
       else
-        # 同じ会社の人が作成したカードをすべて表示
+         # 会社ページの場合、ユーザーの所属する会社に所属する全ユーザーのカードを表示
         @cards = Card.search(params[:query])
-                     .where(company: current_user.my_company)
+                     .joins(:user) # ユーザーとカードを結合
+                     .where(users: { my_company: current_user.my_company }) # ユーザーの会社が一致
                      .order(:created_at)
       end
     else
