@@ -27,8 +27,8 @@
   <%= f.submit "保存", class: "button" %>
 <% end %>
 
-<p><%= link_to '戻る', request.referer ,class: "button"%></p>
+<p><%= link_to '戻る', cards_path(mypage: @mypage), class: "button"%></p>
 
 <% if @mypage %>
-  <p><%= link_to '編集', edit_card_path(@card),class: "button" %>　<%= link_to '削除', card_path(@card), data: { turbo_method: :delete } ,class: "button"%></p>
+  <p><%= link_to '編集', edit_card_path(@card, mypage: params[:mypage]), class: "button" %>　<%= link_to '削除', card_path(@card), data: { turbo_method: :delete } ,class: "button"%></p>
 <% end %>

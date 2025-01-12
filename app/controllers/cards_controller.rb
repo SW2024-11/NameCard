@@ -84,7 +84,7 @@ class CardsController < ApplicationController
   def update
     @card = Card.find(params[:id])
     if @card.update(card_params)
-      redirect_to cards_path(mypage: true)
+      redirect_to card_path(@card, mypage: params[:mypage])
     else
       render 'edit'
     end
