@@ -21,6 +21,12 @@
   <p>画像がありません。</p>
 <% end %>
 
+<h3>メモ</h3>
+<%= form_with url: update_memo_card_path(@card), method: :patch, local: true do |f| %>
+  <%= text_area_tag :memo, @user_memo, rows: 5, placeholder: "ここにメモを入力してください" %>
+  <%= f.submit "保存", class: "button" %>
+<% end %>
+
 <p><%= link_to '戻る', request.referer ,class: "button"%></p>
 
 <% if @mypage %>

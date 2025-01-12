@@ -73,6 +73,7 @@ class CardsController < ApplicationController
   def show
     @card = Card.find(params[:id])
     @mypage = params[:mypage] == 'true'
+    @user_memo = @card.memo_for(current_user)
     render 'show'
   end
   
@@ -88,11 +89,17 @@ class CardsController < ApplicationController
       render 'edit'
     end
   end
-
   
   def get_image
     image = Card.find(params[:id])
     send_data image.file, disposition: :inline, type: 'image/png'
+  end
+
+  before_action :set_card, only: [:show, :edit, :update, :update_memo, :destroy]
+
+  def update_memo
+    @card.update_memo_for(current_user, params[:memo])
+    redirect_to card_path(@card, mypage: params[:mypage])
   end
 end
 
@@ -100,4 +107,8 @@ private
 
 def card_params
   params.require(:card).permit(:company, :name, :position, :license, :mail, :tell, :company_adress, :image)
+end
+
+def set_card
+    @card = Card.find(params[:id])
 end

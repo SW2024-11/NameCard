@@ -9,8 +9,12 @@ Rails.application.routes.draw do
   #root 'cards#index'  
   
   resources :users
-  resources :cards
-  
+  resources :cards do
+    member do
+      patch :update_memo
+    end
+  end
+
   get 'get_image/:id', to: 'images#get_image'
   #get 'cards', to: 'cards#index', as: 'card_with_view_type'
   #get 'cards_with_view_type', to: 'cards#index', as: 'card_with_view_type'  # card_with_view_type_path
