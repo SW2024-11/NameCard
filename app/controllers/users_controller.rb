@@ -11,8 +11,12 @@ class UsersController < ApplicationController
     c = User.new(my_company: params[:user][:my_company], 
                  my_name: params[:user][:my_name], 
                  pass: params[:user][:pass])
-    c.save
-    redirect_to cards_path
+    if c.save
+      redirect_to cards_path
+    else
+      @user = c
+      render 'new', status: :unprocessable_entity
+    end
   end
   
   def destroy
