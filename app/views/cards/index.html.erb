@@ -1,15 +1,15 @@
-<div class ="header">
-  <div class ="nav">
-    <%= link_to @mypage ? '会社ページ' : 'マイページ', cards_path(mypage: !@mypage), class: "button" %>
-    <%= link_to '新規追加', new_card_path(mypage: @mypage), class: "button" if @mypage %>
-    <%= link_to 'ログアウト', top_logout_path, class: "button" %>　
-  </div>
-  <div class ="title">
-    <h3><%= @mypage ? 'マイページ' : '会社ページ' %></h3>
-  </div>
-</div>
-
 <body>
+  <header>
+    <div class ="nav">
+      <%= link_to @mypage ? '会社ページ' : 'マイページ', cards_path(mypage: !@mypage), class: "button" %>
+      <%= link_to '新規追加', new_card_path(mypage: @mypage), class: "button" if @mypage %>
+      <%= link_to 'ログアウト', top_logout_path, class: "button" %>　
+    </div>
+    <div class ="title">
+      <h3><%= @mypage ? 'マイページ' : '会社ページ' %></h3>
+    </div>
+  </header>
+
   <div class = "cardmain">
     <h1><%= @mypage ? '登録名刺' : '名刺' %></h1>
     <br>

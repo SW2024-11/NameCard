@@ -1,34 +1,39 @@
-<div class = "header">
-  <div class="title">
-    <h3>名刺詳細</h3>
+<body>
+  <header>
+    <div class="title">
+      <h3>名刺詳細</h3>
+    </div>
+    <div class ="nav">
+      <%= link_to 'ログアウト', top_logout_path ,class: "button"%>
+    </div>
+  </header>
+  <div class = "cardmain"> 
+    <p>会社名：<%= @card.company %></p>
+    <p>氏名：<%= @card.name %></p>
+    <p>役職(肩書き)：<%= @card.position %></p>
+    <p>資格：<%= @card.license %></p>
+    <p>メールアドレス：<%= @card.mail %></p>
+    <p>電話番号：<%= @card.tell %></p>
+    <p>会社住所：<%= @card.company_adress %></p>
+    
+    <% if @card.image.try(:attached?) %>
+      <p>名刺画像：<%= image_tag url_for(@card.image), alt: "名刺画像", width: 200 %></p>
+    <% else %>
+      <p>画像がありません。</p>
+    <% end %>
+    
+    <h3>メモ</h3>
+    <%= form_with url: update_memo_card_path(@card), method: :patch, local: true do |f| %>
+      <%= text_area_tag :memo, @user_memo, rows: 5, placeholder: "ここにメモを入力してください" %>
+      <%= f.submit "メモを保存" %>
+    <% end %>
+    
+    <div class="button_container">
+      <%= link_to '戻る', cards_path(mypage: @mypage), class: "button"%>
+      
+      <% if @mypage %>
+        <%= link_to '編集', edit_card_path(@card, mypage: params[:mypage]), class: "button" %>　<%= link_to '削除', card_path(@card), data: { turbo_method: :delete } ,class: "button"%>
+      <% end %>
+    </div>
   </div>
-  <div class ="nav">
-    <%= link_to 'ログアウト', top_logout_path ,class: "button"%>
-  </div>
-</div>
-
-<p>会社名：<%= @card.company %></p>
-<p>氏名：<%= @card.name %></p>
-<p>役職(肩書き)：<%= @card.position %></p>
-<p>資格：<%= @card.license %></p>
-<p>メールアドレス：<%= @card.mail %></p>
-<p>電話番号：<%= @card.tell %></p>
-<p>会社住所：<%= @card.company_adress %></p>
-
-<% if @card.image.try(:attached?) %>
-  <p>名刺画像：<%= image_tag url_for(@card.image), alt: "名刺画像", width: 200 %></p>
-<% else %>
-  <p>画像がありません。</p>
-<% end %>
-
-<h3>メモ</h3>
-<%= form_with url: update_memo_card_path(@card), method: :patch, local: true do |f| %>
-  <%= text_area_tag :memo, @user_memo, rows: 5, placeholder: "ここにメモを入力してください" %>
-  <%= f.submit "保存", class: "button" %>
-<% end %>
-
-<p><%= link_to '戻る', cards_path(mypage: @mypage), class: "button"%></p>
-
-<% if @mypage %>
-  <p><%= link_to '編集', edit_card_path(@card, mypage: params[:mypage]), class: "button" %>　<%= link_to '削除', card_path(@card), data: { turbo_method: :delete } ,class: "button"%></p>
-<% end %>
+</body>

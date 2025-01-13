@@ -1,30 +1,34 @@
-<div class = "header">
-  <div class="title">
-    <h3>名刺詳細</h3>
+<body>
+  <header>
+    <div class="title">
+      <h3>名刺詳細</h3>
+    </div>
+    <div class ="nav">
+      <%= link_to 'ログアウト', top_logout_path ,class: "button"%>
+    </div>
+  </header>
+  
+  <div class="cardmain">
+    <p>会社名：<%= @card.company %></p>
+    <p>氏名：<%= @card.name %></p>
+    <p>役職(肩書き)：<%= @card.position %></p>
+    <p>資格：<%= @card.license %></p>
+    <p>メールアドレス：<%= @card.mail %></p>
+    <p>電話番号：<%= @card.tell %></p>
+    <p>会社住所：<%= @card.company_adress %></p>
+    
+    <% if @card.image.try(:attached?) %>
+      <p>名刺画像：<%= image_tag url_for(@card.image), alt: "名刺画像", width: 200 %></p>
+    <% else %>
+      <p>画像がありません。</p>
+    <% end %>
+    <div class="button-container">
+      <%= link_to '編集', edit_card_path(@card) ,class: "button"%>
+      <%= link_to '削除', card_path(@card), data: {turbo_method: :delete} ,class: "button"%>
+      <%= link_to '戻る', request.referer ,class: "button"%>
+    </div>
   </div>
-  <div class ="nav">
-    <%= link_to 'ログアウト', top_logout_path ,class: "button"%>
-  </div>
-</div>
-
-<p>会社名：<%= @card.company %></p>
-<p>氏名：<%= @card.name %></p>
-<p>役職(肩書き)：<%= @card.position %></p>
-<p>資格：<%= @card.license %></p>
-<p>メールアドレス：<%= @card.mail %></p>
-<p>電話番号：<%= @card.tell %></p>
-<p>会社住所：<%= @card.company_adress %></p>
-
-<% if @card.image.try(:attached?) %>
-  <p>名刺画像：<%= image_tag url_for(@card.image), alt: "名刺画像", width: 200 %></p>
-<% else %>
-  <p>画像がありません。</p>
-<% end %>
-
-<p><%= link_to '戻る', request.referer ,class: "button"%></p>
-
-<p><%= link_to '編集', edit_card_path(@card) ,class: "button"%>　<%= link_to '削除', card_path(@card), data: {turbo_method: :delete} ,class: "button"%></p>
-
+</body>
 
 
 

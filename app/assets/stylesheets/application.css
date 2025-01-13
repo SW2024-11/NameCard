@@ -2,11 +2,30 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  padding-top: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   position: relative;
+  min-height: 100vh;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 50px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+header .title h3 {
+    position: absolute;
+    top: 60px;
+    left: 200px;
+    margin: 10px;
+    font-size: 30px;
 }
 
 .top h1 {
@@ -18,6 +37,11 @@ body {
 .buttons {
     margin-bottom: 30px;
     text-align: center;
+}
+
+.button-container {
+  display: flex;
+  margin-top: 30px;
 }
 
 .button {
@@ -56,6 +80,11 @@ body {
     font-size: 22px;
 }
 
+.error{
+    color: red;
+    font-size: 15px;
+}
+
 .syosai{
     margin-top: 100px;
     margin-right: 100px;
@@ -63,25 +92,10 @@ body {
     font-size: 20px;
 }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 20px;
-    height: 50px;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.header .title h3 {
-    position: absolute;
-    top: 60px;
-    left: 200px;
-    margin: 10px;
-    font-size: 30px;
-}
-
 .cardmain {
+    width: 500px;
     display: flex;
+    padding-top: 70px; 
     margin-bottom: 20px;     
     font-size: 20px;
     flex-direction: column;
