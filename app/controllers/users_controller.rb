@@ -12,7 +12,7 @@ class UsersController < ApplicationController
                  my_name: params[:user][:my_name], 
                  pass: params[:user][:pass])
     if c.save
-      redirect_to cards_path
+      redirect_to top_login_path
     else
       @user = c
       render 'new', status: :unprocessable_entity
